@@ -8,7 +8,7 @@ import ExerciseAccordion from "../../components/ExerciseAccordion/ExerciseAccord
 import RoutineAccordion from "../../components/RoutineAccordion/RoutineAccordion";
 import ExerciseCalendar from "../../components/ExerciseCalendar/ExerciseCalendar";
 import Toggle from "../../components/Toggle/Toggle";
-
+import NewExerciseAccordion from "../../components/NewExerciseAccordion/NewExerciseAccordion";
 const ButtonWrapper = styled.div`
   display: flex;
   gap: 5px;
@@ -99,6 +99,9 @@ export default function UISample() {
       </CalendarWrapper>
       <Wrapper>
         <Toggle isCheck={isCheck} setCheck={setCheck} />
+      </Wrapper>
+      <Wrapper>
+        <NewExerciseAccordion />
       </Wrapper>
     </>
   );

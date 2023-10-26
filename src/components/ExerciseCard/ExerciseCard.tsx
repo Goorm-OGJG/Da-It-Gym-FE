@@ -5,7 +5,7 @@ interface Props {
   exercisePart: string;
 }
 
-interface ExerciseTypes {
+export interface ExerciseTypes {
   chest: string;
   back: string;
   shoulders: string;

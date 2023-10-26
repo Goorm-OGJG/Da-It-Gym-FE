@@ -10,6 +10,30 @@ export interface Props {
   type: "record" | "recorded";
 }
 
+const routine = [
+  {
+    isSpreadRoutine: false,
+    exercises: [
+      {
+        exerciseName: "벤치 프레스",
+        exercisePart: "가슴",
+        restTime: {
+          miniutes: 5,
+          seconds: 59,
+        },
+        exerciseSet: [
+          {
+            setNum: 1,
+            weights: 130,
+            counts: 0,
+            completed: false,
+          },
+        ],
+      },
+    ],
+  },
+];
+
 export default function RoutineAccordion({
   routineName,
   exerciseName,
