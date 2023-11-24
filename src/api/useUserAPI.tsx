@@ -36,7 +36,7 @@ export function useUserAPI() {
           userProfileImgUrl: response.data.data.userProfileImgUrl,
           introduction: response.data.data.introduction,
           healthClubName: response.data.data.healthClubName,
-          role: response.data.data.healthClubName,
+          role: response.data.data.role,
         }));
         localStorage.setItem("accessToken", response.headers.authorization);
         localStorage.setItem("alreadyJoined", response.data.data.alreadyJoined);
@@ -50,9 +50,12 @@ export function useUserAPI() {
       .catch((error) => toast.error(error.message));
   };
   // 근근근 로그아웃
-  const requestLogout = () => {
-    axios
-      .post(`${API_URL}/api/users/logout`)
+  const requestLogout = async (FCMToken: string) => {
+    const payload = {
+      token: FCMToken,
+    };
+    await axios
+      .post(`${API_URL}/api/users/logout`, payload)
       .then(() => {
         localStorage.clear();
       })
@@ -115,6 +118,16 @@ export function useUserAPI() {
       .catch((error) => toast.error(error.message));
   };
 
+  //Firebase 푸쉬 알림 FCM 토큰
+  const requestPostFCMToken = (fcmToken: string) => {
+    const payload = {
+      token: fcmToken,
+    };
+    axios
+      .post(`${API_URL}/api/notification/token`, payload)
+      .then(() => {})
+      .catch((error) => toast.error(error.message));
+  };
   // 유저 검색
   const requestSearchUser = async (
     nickname: string,
@@ -134,6 +147,7 @@ export function useUserAPI() {
     requestDeleteKaKaoWithdraw,
     requestPatchNickname,
     requestDuplicatedNickname,
+    requestPostFCMToken,
     requestSearchUser,
   };
 }
