@@ -1,101 +1,105 @@
-# 근근근
+![image](https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/79975172/08ab43a2-45c8-4247-9415-f7e20613cad1)
 
-## 프로젝트 설명
 
-### 📆 기간
 
+# [루틴 및 운동 일지 공유 커뮤니티, 근근근 - 배포 링크](https://daitgym.ogjg.site)
+## 💭 문제 인식
+### 1. 헬스장 PT의 필요성과 가격 부담
+- 헬스장을 처음 찾아 운동법을 잘 모르는 이들에게 PT는 필수 코스이다.  
+- 체격 증대를 위한 고중량 운동기구 이용은 불가피하다.  
+- 운동기구마다 근육에 미치는 효과가 다르기에 몸 관리나 부상 방지를 위해 전문가 손길이 필요하다.  
+- 부담스러운 가격으로 선뜻 PT를 받기 어렵다.
+  
+### 2. 무자격 헬스 트레이너
+- "300㎡가 넘지 않는 헬스장에 체육지도자가 1명 이상만 있다면 나머지 트레이너들은 자격증이 없어도 회원들을 지도할 수 있다."
+- "300㎡가 넘는 헬스장에 체육지도자가 2명 이상만 있다면 나머지 트레이너들은 자격증이 없어도 회원들을 지도할 수 있다."
+<div align=center>
+   <img src="https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/79975172/83fecfb0-5070-4f39-b138-da84aa837bb8" width=500>
+</div>
+
+
+
+## 🚩 서비스 목적
+- 운동 커뮤니티 구축  
+  운동인의 역량을 수치화한 정보를 제공하여 자신의 운동 능력을 개선할 수 있도록 돕는다.  
+  운동을 즐기고 있는 유저들 간에 운동 경험을 공유하고 피드백 함으로써 활성화된 운동 커뮤니티를 구축할 수 있다.  
+  
+- 개인 맞춤 운동 일지 및 루틴 추천  
+  유저가 입력한 운동 역량 정보와 기존 사용자의 데이터를 활용하여  
+  유저에게 맞는 운동 일지와 과거 비슷한 역량을 지녔는데 성장한 유저의 운동 일지와 루틴을 추천한다.  
+  
+  유저들은 동기부여를 얻을 수 있을 뿐만 아니라,  
+  자신의 운동 계획을 효과적으로 수립하고 지속적인 성장을 이룰 수 있게 된다.  
+  
+- 트레이너 검증 및 온라인 PT 채팅 상담  
+  서비스 자체적으로 자격증이나 신체 정보를 통해 트레이너의 신뢰성을 확인하고    
+  트레이너와 사용자 간의 온라인 PT 사전 상담을 지원한다.  
+
+  유저들은 비교적 안전하고 효율적인 트레이닝을 보장받을 수 있으며, 상담 시간을 절약할 수 있다.
+
+## 📆 기간
 2023.10.12 ~ 2023.11.28
 
-### 🏃 팀 구성
+## 🏃 팀 구성
+### Frontend
+- [김준서](https://github.com/narcoker)  
+- [한승재](https://github.com/stat1202)  
+- [조재균](https://github.com/stat1202)  
+- [한세라](https://github.com/hansera)
 
-- Frontend
-  - 한승재
-  - 김준서
-  - 조재균
-  - 한세라
-- Backend
-  - 안병규
-  - 이정준
-  - 이동진
-  - 고예진
-
-### 💡 개요
-
-#### 1. 헬스장 PT의 필요성과 가격 부담
-   건강에 
-#### 2. 무자격 헬스 트레이너
-   
-
-<!-- ### 📺 시연영상
-
-[Youtube](https://www.youtube.com/watch?v=5tLHyCBxhm4) -->
-
-## 🔎 기능 설명
-
-### 1. 메인
-
-![image](https://github.com/Goorm-OGJG/PBL-Instagram-FE/assets/62943439/fe4e682a-6496-42f3-8363-1c600ac60adc)
-![Animation](https://github.com/Goorm-OGJG/PBL-Instagram-FE/assets/62943439/1d078a4f-e19c-4f1b-ab04-d373afd28bdf)
-![Animation](https://github.com/Goorm-OGJG/PBL-Instagram-FE/assets/62943439/d7f88a49-ae2f-42a1-a4fc-3e77eca572c2)
-- Intersection Observer API를 이용한 무한스크롤 구현.
-- 왜 인스타그램은 무한스크롤로 구현했을까? UX적인 측면에서 생각해 보았을때, 휠을 계속해서 내리는 방식이 사용자가 훨씬 편리하게 콘텐츠를 감상할 수 있다.
-
-### 2. 스토리
-
-![Animation](https://github.com/Goorm-OGJG/PBL-Instagram-FE/assets/62943439/1c7105a5-4b96-4a87-a237-24ed27bfda76)
-
-- 스토리 구현의 경우 해당 유저의 스토리 목록이 끝나면 다음 스토리로 navigate 하도록 구현했습니다.
-- 5초 마다 하나씩 콘텐츠가 넘어가도록 설정하였고 넘기거나 돌아가고 싶으면 화살표 버튼을 클릭해 이동할 수 있습니다.
-
-### 3. 로그인
-
-<!-- ![](https://images.velog.io/images/pmk4236/post/7a5339cf-5080-4cc6-95db-d911cfa29023/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-04-11%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.20.58.png) -->
-
-- 로그인과 마찬가지로 회원가입도 와이어프레임을 작성하여 뷰를 구축했습니다.
-- 백엔드에서 성공적인 reponse를 받지 못할 경우 회원가입에 실패했다는 안내의 alert 처리를 해두었습니다.
-
-### 4. 회원가입
-
-<!-- ![](https://images.velog.io/images/pmk4236/post/8575e871-9578-40d8-b6a0-f3c3c1016d92/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-04-11%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.12.35.png) -->
-
-- 실제 당근마켓 사이트에서는 전국 지역을 드롭다운으로 선택할 수 있습니다. 팀 회의를 거친 끝에 전국 지역을 filtering하는 것은 시간 관계 상의 어려움이 있어, 서울 내 지역명 클릭 시 해당 지역 매물 리스트를 filtering하여 불러오게 했습니다.
-- 지역명 클릭 시 `useState`를 사용해 해당 텍스트 값을 request로 요청합니다.
-- reponse로 받은 매물 리스트를 map 내장함수를 사용하여 뿌려주었습니다.
-- 백에서 데이터를 요청시마다 랜덤으로 값을 보내주고, reload 시 매물 리스트가 실제로 업데이트되는 듯한 효과를 넣었습니다.
-
-### 5. 회원정보 수정/계정 비공개
-
-<!-- <center><img src="https://images.velog.io/images/pmk4236/post/6c5d92ac-e728-4d6b-bb13-845c4932acdf/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-04-11%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.15.59.png" width="70%" height="70%" /></center> -->
-
-- 매물 클릭 시 해당 ID값으로 상세페이지를 불러오게 했습니다.
-- 이미지, 닉네임, 카테고리, 가격, 상세설명, 채팅/조회 수를 불러옵니다.
-
-### 6. 팔로잉/팔로우
-
-<!-- <center><img src="https://images.velog.io/images/pmk4236/post/6c5d92ac-e728-4d6b-bb13-845c4932acdf/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-04-11%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.15.59.png" width="70%" height="70%" /></center> -->
-
-- 매물 클릭 시 해당 ID값으로 상세페이지를 불러오게 했습니다.
-- 이미지, 닉네임, 카테고리, 가격, 상세설명, 채팅/조회 수를 불러옵니다.
+### Backend
+[Backend Repository](https://github.com/Goorm-OGJG/Da-It-Gym-BE)
 
 
-### 6. 검색
-
-![Animation](https://github.com/Goorm-OGJG/PBL-Instagram-FE/assets/62943439/8a34ed94-cd86-45db-ac70-7b440828eda7)
-
-- #을 붙이고 검색을 하면 해시태그, 아니면 유저를 검색합니다.
-- 태그 검색 결과를 클릭 시 해당 태그에 관한 게시물이 있는 페이지로 이동합니다.
-- 유저 검색 결과 클릭 시 유저 프로필 페이지로 이동합니다.
+## ⚡ 개발 프로세스
+![image](https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/79975172/516df55d-2b73-450c-bbfc-45bf62ed0a20)
 
 
+## ⚙️ 아키텍쳐
+그림 필요
 
-## 아쉬웠던 점
+## 🔎 UI 및 기능
+### 회원가입, 로그인
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/79975172/c728ec7b-0139-4ef7-b236-8ca7093c95a6
 
-- 프로젝트 진행 중 React 팀원 한 분이 개인 사정으로 그만두게 되어 프론트엔드가 맡은 부분을 혼자 하게 되었습니다. 분량의 문제는 염려되지 않았으나, 제한된 시간적 문제가 컸기에 기능 구현에 대한 완성도가 낮다는 생각을 했습니다. CUD의 기능을 구현하지 못한 것이 대표적인 예입니다. 추후 시간을 투자해 꼭 추가적인 기능을 넣을 예정입니다.
+### 루틴 목록 보기
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/79af2b21-2a6c-4df4-8126-1bfcecaa30d4
 
-- 깃허브 관리를 제대로 하지 못했습니다. 아직 시도해보지 못한 GUI 사용법을 익혀 다음 프로젝트에 반영 예정입니다.
+### 루틴 상세 보기
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/d00cfbf5-a570-4bc4-9930-a3ad6f4e9356
 
-- 코드 효율성의 극대화를 시키지 못한 것이 아쉽습니다. 좀 더 공부하여 잘 짜여진 코드를 만드는 것이 목표입니다.
+### 루틴 작성 하기
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/557063b8-e2c8-487c-9856-983b861c55e5
 
-## 느낀 점
+### 알림
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/598d9f7c-3f77-4a47-b658-8109a5bbc094
 
-- 클론코딩은 처음이라 그런지 실제 운영사이트와 똑같이 만들고 배포했을 때 너무 신기하고 감격스러웠습니다. 비록 100% 완벽히 구현하진 못했지만 이번 프로젝트를 계기로 다음 클론코딩 프로젝트를 한다면 지금과는 더 많은 성장의 차이를 느낄 수 있지 않을까 생각합니다.
+### 운동 일지 목록 보기
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/a707fb5b-eda7-446c-b429-b8a0ce7dbc51
+
+### 운동 일지 상세 보기
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/2f2585d6-028a-459c-98a8-9a4bcb587348
+
+### 운동 계획 작성 및 시작
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/4a48fdfc-a0ec-46fa-8d26-f052fb8bd89e
+
+### 운동 일지 작성
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/cf8757f5-6814-4589-a72f-21569b2fd638
+
+### 마이 페이지 - 보관함/인바디
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/35f687b2-55e4-4b10-ad24-fd5d517e8139
+
+### 마이 페이지 - 프로필 편집
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/460188d0-f376-435e-9cca-3943d3766e39
+
+### 관리자 페이지 - 트레이너 승인
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/8162de51-2b74-4abb-b5b5-454f98e8f3ce
+
+### 유저 찾기
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/dff067d4-7639-4755-9762-59f4d27e0360
+
+### 근근근을 사용하고 있는 카카오톡 친구
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/1ea6affe-c707-4a62-98ac-88e57fe49550
+
+### 채팅
+https://github.com/Goorm-OGJG/Da-It-Gym-FE/assets/62943439/14ee20ac-bfa7-4e94-869d-d7173139d881
