@@ -38,6 +38,10 @@ function FeedNewRoutine() {
     navigate("/feed/routine");
   };
 
+  const handleCancel = () => {
+    navigate("/feed/routine");
+  };
+
   useEffect(() => {
     const friendRoutine: Routine = location.state?.routine;
     const friendRoutineDivision = location.state?.division;
@@ -96,7 +100,7 @@ function FeedNewRoutine() {
       </S.RoutineContainer>
 
       <S.RoutineFunctionsContainer>
-        <Button display="flex" type="border" size="large" onClick={() => {}}>
+        <Button display="flex" type="border" size="large" onClick={handleCancel}>
           취소
         </Button>
         <Button display="flex" type="fill" size="large" onClick={handleSumbitRoutine}>
