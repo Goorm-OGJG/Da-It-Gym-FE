@@ -4,7 +4,6 @@ import { userInfoState } from "../../recoil/userInfoState";
 import { Routine, useRoutine } from "../../hooks/useRoutine";
 import useRoutineAPI, { CreateRoutinePayload } from "../../api/useRoutineAPI";
 import RoutineAccordion from "../../components/RoutineAccordion/RoutineAccordion";
-import Nav from "../../components/Nav/Nav";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import TextArea from "../../components/TextArea/TextArea";
@@ -51,7 +50,6 @@ function FeedNewRoutine() {
 
   return (
     <>
-      <Nav type="top" />
       <S.BoardContainer>
         <S.BoardHeader>
           <S.WriterInfoWrapper>
@@ -107,8 +105,6 @@ function FeedNewRoutine() {
           공유하기
         </Button>
       </S.RoutineFunctionsContainer>
-
-      <Nav type="home" />
     </>
   );
 }
