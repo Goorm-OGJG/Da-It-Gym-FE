@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./AddExerciseModal.style";
 import { Action as RoutineAction } from "../../hooks/useRoutine";
 import { Day, Action as DayAction } from "../../hooks/useDay";
@@ -6,7 +6,7 @@ import ExercisePartLabel from "../ExercisePartLabel/ExercisePartLabel";
 import ExerciseCard from "../ExerciseCard/ExerciseCard";
 import { ExercisePart, partLabels } from "../../constants/excercise";
 import Button from "../Button/Button";
-import useRoutineAPI from "../../api/useRoutineAPI";
+import useRoutineAPI, { ResponseExercise } from "../../api/useRoutineAPI";
 import useExerciseDiaryAPI from "../../api/useExerciseDiaryAPI";
 import { getNewExercise } from "../../hooks/useExercise";
 import { useLocation } from "react-router";
@@ -24,9 +24,9 @@ export default function AddExerciseModal({
   setIsOpenedAddExerciseModal,
   day,
 }: Props) {
+  const [exercises, setExercises] = useState<ResponseExercise[]>([]);
   const [selectedPart, setSelectedPart] = useState<ExercisePart>("가슴");
-  const { useExerciseOfPartQuery } = useRoutineAPI();
-  const {data: exercises, refetch: refetchExercise} = useExerciseOfPartQuery(selectedPart);
+  const { requestExerciseOfPart } = useRoutineAPI();
   const { requestAddExercise } = useExerciseDiaryAPI();
   const location = useLocation();
   const handleSelected = (exercisePart: ExercisePart): void => {
@@ -40,7 +40,7 @@ export default function AddExerciseModal({
       exerciseName,
       exercisePart,
     });
-
+    // console.log(day);
     const newExercise = getNewExercise(day.exercises.length, exerciseName, exercisePart);
     const payload = { ...newExercise, exerciseNum: day.exercises.length + 1, id: day.id };
 
@@ -49,15 +49,18 @@ export default function AddExerciseModal({
     }
   };
 
-  const handleRefresh = () => {
-    refetchExercise();
-  };
-
   const handleCloseModal = () => {
     setIsOpenedAddExerciseModal(false);
   };
 
-  
+  const handleUpdateExercisesOfPart = async (selectedPart: ExercisePart) => {
+    const exercises = await requestExerciseOfPart(selectedPart);
+    setExercises(exercises);
+  };
+
+  useEffect(() => {
+    handleUpdateExercisesOfPart(selectedPart);
+  }, [selectedPart]);
 
   return (
     <S.Overlay>
@@ -78,7 +81,7 @@ export default function AddExerciseModal({
           ))}
         </S.PartsWrapper>
         <S.ExercisesWrapper>
-          {exercises?.map(({ exerciseName, exercisePart }) => (
+          {exercises.map(({ exerciseName, exercisePart }) => (
             <S.ExerciseCardWrapper
               onClick={() =>
                 handleCreateExercise(exerciseName, exercisePart as ExercisePart)
@@ -89,9 +92,6 @@ export default function AddExerciseModal({
           ))}
         </S.ExercisesWrapper>
         <S.ButtonBox>
-          <Button display="flex" size="large" type="fill" onClick={handleRefresh}>
-            새로고침
-          </Button>
           <Button display="flex" size="large" type="border" onClick={handleCloseModal}>
             닫기
           </Button>

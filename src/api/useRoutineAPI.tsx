@@ -3,7 +3,6 @@ import { Routine } from "../hooks/useRoutine";
 import { useAxios } from "./useAxios";
 import { ExercisePart } from "../constants/excercise";
 import { useNavigate } from "react-router";
-import { useQuery } from "@tanstack/react-query";
 
 export interface CreateCommentPayload {
   comment: string;
@@ -161,10 +160,7 @@ export default function useRoutineAPI() {
 
     axios
       .post(`${API_URL}/api/routines`, payload)
-      .then(() => {
-        toast.success("루틴을 등록했습니다.");
-        navigate("/feed/routine");
-      })
+      .then(() => {})
       .catch(() => {});
   };
 
@@ -210,21 +206,11 @@ export default function useRoutineAPI() {
     const response = await axios
       .get(`${API_URL}/api/exercises/${encodeURIComponent(exercisePart)}`)
       .then((response) => response.data.data.exercises)
-      .catch((error) => {
+      .catch(() => {
         toast.error("운동 목록을 불러오는 데 실패했습니다.");
-        throw error;
       });
     return response;
   };
-
- const useExerciseOfPartQuery = ( exercisePart: ExercisePart) => {
-  return useQuery({
-    queryKey: ["ExerciseOfPart", exercisePart], 
-    queryFn: () => requestExerciseOfPart(exercisePart),
-    staleTime: Infinity,
-    gcTime:Infinity
-  });
- };
 
   return {
     requestLike,
@@ -238,6 +224,5 @@ export default function useRoutineAPI() {
     requestScrapRoutine,
     requestUnscrapRoutine,
     requestExerciseOfPart,
-    useExerciseOfPartQuery,
   };
 }

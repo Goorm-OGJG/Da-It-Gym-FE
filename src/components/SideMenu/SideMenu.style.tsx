@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import * as COLOR from "../../constants/color";
 import * as FONT from "../../constants/font";
-
-export const SideWrapper = styled.div`
+interface SideMenuProps {
+  sideMenu: boolean;
+}
+export const SideWrapper = styled.div<SideMenuProps>`
   position: absolute;
   height: 100vh;
   width: 300px;

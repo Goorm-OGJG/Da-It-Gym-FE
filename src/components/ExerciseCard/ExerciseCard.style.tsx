@@ -5,7 +5,6 @@ import * as COLOR from "../../constants/color";
 export const Card = styled.div`
   width: 90%;
   padding: 16px 20px;
-  font-size: ${FONT.XS};
   font-weight: ${FONT.Bold};
   border-radius: 10px;
   box-shadow: 0 4px 4px ${COLOR.Shadow};
@@ -18,7 +17,7 @@ export const Card = styled.div`
 `;
 
 export const Part = styled.span`
-  padding-left: 5px;
-  font-size: ${FONT.XS};
+  padding-left: 15px;
+  font-size: ${FONT.S};
   color: ${COLOR.Gray3};
 `;

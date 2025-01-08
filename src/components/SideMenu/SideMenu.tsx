@@ -5,9 +5,10 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { sideMenuState } from "../../recoil/navState";
 import { useUserAPI } from "../../api/useUserAPI";
 import { userInfoState } from "../../recoil/userInfoState";
-import { useCallback, useEffect, useRef } from "react";
-
-function SideMenu() {
+interface Props {
+  sideMenu: boolean;
+}
+function SideMenu({ sideMenu }: Props) {
   const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API;
   const VITE_SITE_URL = import.meta.env.VITE_SITE_URL;
   const LOGOUT_REDIRECT_URI = `${VITE_SITE_URL}/login`;
@@ -17,7 +18,6 @@ function SideMenu() {
   const navigate = useNavigate();
   const setSideMenu = useSetRecoilState(sideMenuState);
   const handleNav = (destination: string) => {
-    console.log("Navigate to:", destination);
     navigate(destination);
     setSideMenu(false);
   };
@@ -30,29 +30,9 @@ function SideMenu() {
     window.location.href = link;
   };
 
-  const componentRef = useRef<HTMLDivElement | null>(null);
-
-  const handleClickOutside = useCallback((e: MouseEvent) => {
-    if(componentRef.current && !componentRef.current.contains(e.target as Node)){
-        setSideMenu(false);
-    }
-  }, [setSideMenu]);
-
-  useEffect(()=>{
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () =>{
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [handleClickOutside]);
-
   return (
-    <S.SideWrapper  ref={componentRef}>
-      <S.SideMenuBox onClick={(e) => {
-        console.log("test");
-         e.stopPropagation();
-        handleNav("/feed/search-user");}
-      }>
+    <S.SideWrapper sideMenu={sideMenu}>
+      <S.SideMenuBox onClick={() => handleNav("/feed/search-user")}>
         <S.SearchIcon>
           <Icon.Search />
         </S.SearchIcon>
