@@ -24,7 +24,7 @@ export default function ExerciseDiaryDefault({ day, dayDispatch }: Props) {
   const [searchParams] = useSearchParams();
   const date = searchParams.get("date");
   const [showCalendar, setShowCalendar] = useState(true);
-  const [value, onChange] = useState<Value>(new Date());
+  const [value, onChange] = useState<Value>(null);
   const [isExist, setIsExist] = useRecoilState(isExistState);
   const setMark = useSetRecoilState(markState);
   const showCalendarHandler = () => {
