@@ -15,12 +15,25 @@ export const SideWrapper = styled.div`
   box-shadow: 4px 4px 12px rgba(32, 32, 32, 0.1);
   z-index: 90;
 `;
-export const SideMenuBox = styled.div`
+export const SideMenuBox = styled.button`
   display: flex;
   font-size: 10px;
   align-items: center;
-  margin: 16px 24px 16px 24px;
+  width: 100%;
+  background-color: ${COLOR.White};
+  border: none;
+  padding: 16px 24px 16px 24px;
   cursor: pointer;
+
+  &:hover{
+    background-color: ${COLOR.Gray0};
+    transform: scale(98%);
+    transition: 0.2s;
+  }
+
+  &:active{
+    background-color: ${COLOR.White};
+  }
 `;
 export const SearchIcon = styled.div`
   margin-right: 10px;

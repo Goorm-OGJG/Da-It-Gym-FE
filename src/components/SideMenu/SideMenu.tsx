@@ -49,8 +49,7 @@ function SideMenu() {
   return (
     <S.SideWrapper  ref={componentRef}>
       <S.SideMenuBox onClick={(e) => {
-        console.log("test");
-         e.stopPropagation();
+        e.stopPropagation();
         handleNav("/feed/search-user");}
       }>
         <S.SearchIcon>
