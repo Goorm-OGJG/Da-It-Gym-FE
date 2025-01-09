@@ -47,8 +47,9 @@ function SideMenu() {
   }, [handleClickOutside]);
 
   return (
-    <S.Overlay>
-      <S.SideWrapper  ref={componentRef}>
+    <>
+      <S.Overlay/>
+      <S.SideWrapper ref={componentRef}>
         <S.SideMenuBox onClick={(e) => {
           e.stopPropagation();
           handleNav("/feed/search-user");}
@@ -127,7 +128,7 @@ function SideMenu() {
         </S.SideMenuBox>
         <S.Line />
       </S.SideWrapper>
-    </S.Overlay>
+    </>
   );
 }
 

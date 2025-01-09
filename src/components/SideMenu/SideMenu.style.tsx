@@ -8,7 +8,6 @@ export const Overlay = styled.div`
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: 100;
 `;
 
 export const SideWrapper = styled.div`
@@ -18,7 +17,7 @@ export const SideWrapper = styled.div`
   background-color: ${COLOR.White};
   color: ${COLOR.Primary};
   top: 60px;
-  right: 515px;
+  right: -243px;
   transition: all 1s ease-in-out;
   border-radius: 1px solid ${COLOR.Gray0};
   box-shadow: 4px 4px 12px rgba(32, 32, 32, 0.1);
