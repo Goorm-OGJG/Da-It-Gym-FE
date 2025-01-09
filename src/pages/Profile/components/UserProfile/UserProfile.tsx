@@ -65,7 +65,7 @@ export default function UserProfile() {
         <S.ProfileBox>
           <S.ProfileContent>
             <S.Nickname>
-              {userProfile?.data.data.nickname}
+              {userProfile?.data.data.nickname || ""}
               {userInfo.nickname === userProfile?.data.data.nickname && <S.Role>{userProfile?.data.data.role}</S.Role>}
             </S.Nickname>
             {userProfile?.data.data.healthClubName && (
@@ -91,9 +91,9 @@ export default function UserProfile() {
           </S.ButtonBox>
 
           <S.CounterBox>
-            <S.CounterDiv as="span">{`일지수 ${userProfile?.data.data.journalCount}`}</S.CounterDiv>
-            <S.CounterButton onClick={followerModalHandler}>{`팔로워 ${userProfile?.data.data.followerCount}`}</S.CounterButton>
-            <S.CounterButton onClick={followModalHandler}>{`팔로우 ${userProfile?.data.data.followingCount}`}</S.CounterButton>
+            <S.CounterDiv as="span">{`일지수 ${userProfile?.data.data.journalCount || 0}`}</S.CounterDiv>
+            <S.CounterButton onClick={followerModalHandler}>{`팔로워 ${userProfile?.data.data.followerCount || 0}`}</S.CounterButton>
+            <S.CounterButton onClick={followModalHandler}>{`팔로우 ${userProfile?.data.data.followingCount || 0}`}</S.CounterButton>
           </S.CounterBox>
         </S.ProfileBox>
       </S.ProfileWrapper>
