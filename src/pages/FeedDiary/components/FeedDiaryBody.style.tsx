@@ -25,7 +25,7 @@ export const BodyEmptyWrapper = styled.div`
   /* flex-wrap: wrap; */
   width: 100%;
   /* max-height: 830px; */
-  padding: 220px 30px 100px 30px;
+  padding: 120px 30px 100px 30px;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;

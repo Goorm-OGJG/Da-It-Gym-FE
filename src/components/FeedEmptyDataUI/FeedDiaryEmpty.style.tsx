@@ -21,9 +21,11 @@ export const EmptyImage = styled.img`
 `;
 
 export const EmptyComment = styled.div`
+  white-space: nowrap;
   margin-top: 12px;
   align-content: center;
-  font-size: ${FONT.S};
+  font-size: ${FONT.XS};
+  /* font-size: 0.7rem; */
   color: ${COLOR.Gray3};
   line-height: 30px;
 `;

@@ -115,7 +115,7 @@ function FeedDiaryBody() {
       <S.BodyEmptyWrapper>
         {feedDiaryData.feedExerciseJournalLists.length === 0 && (
           <FeedDiaryEmpty>
-              운동 후 일지를 작성하고 피드백 받아봐요!
+              운동일지를 공유하고 피드백 받아보세요!
           </FeedDiaryEmpty>
         )}
       </S.BodyEmptyWrapper>

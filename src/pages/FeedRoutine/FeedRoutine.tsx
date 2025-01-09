@@ -241,9 +241,7 @@ export default function FeedRoutine() {
       <S.Routines ref={routinesRef}>
         {routines.length === 0 && (
           <FeedDiaryEmpty>
-            <S.EmptySpan>
               누구보다 먼저 루틴을 만들어보세요!
-            </S.EmptySpan>
           </FeedDiaryEmpty>
         )}
         {routines.map((routine) => (
