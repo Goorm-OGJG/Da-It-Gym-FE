@@ -35,4 +35,5 @@ export const ExerciseAcc = styled.div`
   margin: 10px 0px;
   display: flex;
   flex-direction: column;
+  padding: 10px;
 `;

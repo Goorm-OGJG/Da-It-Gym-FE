@@ -67,8 +67,7 @@ function SharePhoto({ formData }: Props) {
               <Icon.AddImage size="180" />
             </S.IconAddImg>
             <S.ShareTitle>
-              오늘의 나를 <br />
-              기록해 보세요
+              오늘의 나를 사진으로 기록해 보세요
             </S.ShareTitle>
           </S.SharePhotoBox>
         </S.SharePhotoWrapper>

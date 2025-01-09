@@ -29,7 +29,7 @@ export const IconAddImg = styled.div`
 `;
 
 export const ShareTitle = styled.div`
-  font-size: ${FONT.XXL};
+  font-size: ${FONT.XS};
   font-weight: ${FONT.Bold};
   color: ${COLOR.Primary};
   line-height: 42px;
@@ -54,6 +54,7 @@ export const AddLabel = styled.label`
   color: ${COLOR.White};
   font-size: ${FONT.S};
   border-radius: 5px;
+  margin-right: 10px;
   padding: 10px;
   &:hover {
     background-color: ${COLOR.Primary};
