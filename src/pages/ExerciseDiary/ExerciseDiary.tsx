@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import ExerciseDiaryDefault from "./components/ExerciseDiaryDefault/ExerciseDiaryDefault";
 import ExerciseNav from "./components/ExerciseNav/ExerciseNav";
 import ExerciseDiarySuccess from "./components/ExerciseDiarySuccess/ExerciseDiarySuccess";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import useExerciseDiaryAPI from "../../api/useExerciseDiaryAPI";
 import { useDay } from "../../hooks/useDay";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -15,10 +15,10 @@ export default function ExerciseDiary() {
   const { requestJournalDetail } = useExerciseDiaryAPI();
   const [day, dayDispatch] = useDay();
   const mark = useRecoilValue(markState);
+  const isMarked = useMemo(() => mark.includes(date as string), [date, mark]);
 
   useEffect(() => {
-    if (mark.includes(date as string)) {
-      if (date) {
+    if (isMarked) {
         requestJournalDetail(
           date as string,
           dayDispatch,
@@ -26,12 +26,11 @@ export default function ExerciseDiary() {
           undefined,
           setIsExist,
         );
-      }
     }
-  }, [date, isExist]);
+  }, [date, isExist, setIsExist, mark, dayDispatch]); // requestJournalDetail 추가 시 무한 재랜더링
   return (
     <>
-      {date && day.completed ? (
+       {isMarked && date && day.completed ? (
         <>
           <ExerciseDiarySuccess
             day={day}

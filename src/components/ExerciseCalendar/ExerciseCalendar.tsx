@@ -9,7 +9,7 @@ import { isExistState, markState } from "../../recoil/exerciseState";
 import { useQuery } from "@tanstack/react-query";
 import { useAxios } from "../../api/useAxios";
 export type ValuePiece = Date | null;
-export type Value = ValuePiece | [ValuePiece, ValuePiece];
+export type Value = ValuePiece | [ValuePiece, ValuePiece] | null; 
 
 interface Props {
   value: Value;
