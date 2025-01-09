@@ -82,11 +82,12 @@ export const CounterButton = styled(ProfileButton)`
   background-color: transparent;
   font-size: ${FONT.S};
   line-height: ${FONT.S};
+  white-space: nowrap;
 `;
 
 export const CounterDiv = styled(CounterButton)`
   cursor: initial;
-
+  white-space: nowrap;
   -webkit-user-select: none !important;
   -moz-user-select: -moz-none !important;
   -ms-user-select: none !important;
