@@ -110,14 +110,9 @@ export default function Routines() {
         </>
       ) : (
         <FeedDiaryEmpty>
-          <S.EmptySpan>
-            루틴이 없습니다.
-            <br />
             나만의 루틴을 만들어 보세요!
-          </S.EmptySpan>
         </FeedDiaryEmpty>
       )}
-
       <S.Observer ref={observerRef} />
     </S.RoutineUsers>
   );

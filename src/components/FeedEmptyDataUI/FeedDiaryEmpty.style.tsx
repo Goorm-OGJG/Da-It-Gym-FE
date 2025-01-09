@@ -9,6 +9,7 @@ export const EmptyWrapper = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
+  padding: 60px;
 `;
 export const EmptyImgBox = styled.div`
   width: 200px;
@@ -20,9 +21,9 @@ export const EmptyImage = styled.img`
 `;
 
 export const EmptyComment = styled.div`
-  margin-top: 30px;
+  margin-top: 12px;
   align-content: center;
-  font-size: ${FONT.L};
+  font-size: ${FONT.S};
   color: ${COLOR.Gray3};
   line-height: 30px;
 `;

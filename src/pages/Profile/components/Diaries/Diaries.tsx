@@ -74,11 +74,7 @@ export default function Diaries() {
         </>
       ) : (
         <FeedDiaryEmpty>
-          <S.EmptySpan>
-            일지가 없습니다.
-            <br />
-            나만의 일지를 만들어 보세요!
-          </S.EmptySpan>
+          일지를 공유하고 피드백을 받아봐요!
         </FeedDiaryEmpty>
       )}
       <S.Observer ref={observerRef} />

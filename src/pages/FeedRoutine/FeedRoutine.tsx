@@ -242,8 +242,6 @@ export default function FeedRoutine() {
         {routines.length === 0 && (
           <FeedDiaryEmpty>
             <S.EmptySpan>
-              루틴이 없습니다.
-              <br />
               누구보다 먼저 루틴을 만들어보세요!
             </S.EmptySpan>
           </FeedDiaryEmpty>

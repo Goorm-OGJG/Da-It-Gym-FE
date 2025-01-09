@@ -56,7 +56,7 @@ export const ExerciseBox = styled.div`
 `;
 
 export const NoDiary = styled.span`
-  font-size: ${FONT.XL};
+  font-size: ${FONT.M};
   font-weight: ${FONT.Bold};
   padding-bottom: 10px;
 `;

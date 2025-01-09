@@ -4,12 +4,14 @@ import * as FONT from "../../constants/font";
 export const RoutineUserWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  width: 90%;
   height: 120px;
   background-color: ${COLOR.White};
   box-shadow: 0px 4px 4px ${COLOR.Shadow};
   border-radius: 10px;
   padding: 6px 16px 6px 16px;
+  margin: 20px;
   cursor: pointer;
 `;
 export const RoutineTop = styled.div`

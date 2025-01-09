@@ -63,7 +63,7 @@ export const Routines = styled.div`
   max-width: 600px;
   flex-direction: column;
   gap: 10px;
-  padding: 220px 30px 100px 30px;
+  padding: 180px 10px 100px 10px;
   overflow: auto;
   &::-webkit-scrollbar {
     display: none;
@@ -73,4 +73,5 @@ export const Routines = styled.div`
 export const EmptySpan = styled.span`
   display: flex;
   text-align: center;
+  font-size: ${FONT.S};
 `;

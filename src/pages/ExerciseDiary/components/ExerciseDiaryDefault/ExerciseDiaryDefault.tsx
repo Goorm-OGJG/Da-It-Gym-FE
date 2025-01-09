@@ -6,14 +6,12 @@ import ExerciseCalendar, {
 } from "../../../../components/ExerciseCalendar/ExerciseCalendar";
 import ExerciseAccordion from "../../../../components/ExerciseAccordion/ExerciseAccordion";
 import { Action, Day } from "../../../../hooks/useDay";
-// import { useSearchParams } from "react-router-dom";
 import moment from "moment";
 import Button from "../../../../components/Button/Button";
 import useExerciseDiaryAPI from "../../../../api/useExerciseDiaryAPI";
 import { isExistState, markState } from "../../../../recoil/exerciseState";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { useSearchParams } from "react-router-dom";
-import FeedDiaryEmpty from "../../../../components/FeedEmptyDataUI/FeedDiaryEmpty";
 
 interface Props {
   day: Day;
@@ -51,12 +49,10 @@ export default function ExerciseDiaryDefault({ day, dayDispatch }: Props) {
       </S.CalendarAccordion>
       {/* 운동목록들 */}
       <>
-        {date ? (
+        {date && (
           <>
             {!isExist ? (
               <S.ExerciseBox>
-                <S.NoDiary>아직 일지를 작성하지 않았어요!</S.NoDiary>
-                <S.NoDiary>일지를 작성해 보세요</S.NoDiary>
                 <Button
                   display="flex"
                   size="medium"
@@ -78,11 +74,7 @@ export default function ExerciseDiaryDefault({ day, dayDispatch }: Props) {
               </S.ExerciseBox>
             )}
           </>
-        ) : (
-          <FeedDiaryEmpty>
-            <S.NoDiary>날짜를 선택해 주세요</S.NoDiary>
-          </FeedDiaryEmpty>
-        )}
+        )} 
       </>
     </S.Wrapper>
   );
