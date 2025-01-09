@@ -1,19 +1,32 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>근근근</title>
-    <script>
-      var global = window;
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>근근근</title>
+  <script>
+    var global = window;
   </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2101906a35db0ebf85f5f48a7e38315c"></script> -->
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7d0185525c88354a29a88b31f46b45d9&libraries=services"></script>
-    <script type="module" src="/src/main.tsx"></script>
-    <script defer src="/firebase-messaging-sw.js"></script>
-  </body>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LZZXHBJBL9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-LZZXHBJBL9');
+</script>
+
+<body>
+  <div id="root"></div>
+  <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2101906a35db0ebf85f5f48a7e38315c"></script> -->
+  <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7d0185525c88354a29a88b31f46b45d9&libraries=services"></script>
+  <script type="module" src="/src/main.tsx"></script>
+  <script defer src="/firebase-messaging-sw.js"></script>
+</body>
+
 </html>
