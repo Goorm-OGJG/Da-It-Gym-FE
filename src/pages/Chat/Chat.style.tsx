@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   transform: translateY(60px);
   user-select: none;
-  height: 82%;
+  height: 80%;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -17,21 +17,17 @@ export const Container = styled.div`
 export const Title = styled.div`
   text-align: start;
   /* border: 1px solid red; */
-  width: 82%;
-  font-size: ${FONT.XL};
-  padding: 20px 0;
+  width: 100%;
+  font-size: ${FONT.L};
+  padding: 20px;
   font-weight: ${FONT.Bold};
   cursor: pointer;
 `;
 
 export const ChatContainer = styled.div`
-  width: 82%;
-  flex: 10;
-  border: 1px solid ${COLOR.Gray2};
-  border-bottom: none;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  padding: 20px;
+  width: 100%;
+  height: 72vh;
+  padding: 0px 20px;
   overflow: auto;
   &::-webkit-scrollbar {
     display: none;
@@ -40,13 +36,11 @@ export const ChatContainer = styled.div`
 
 export const InputContainer = styled.div`
   display: flex;
+  position: absolute;
+  bottom: -50px;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${COLOR.Gray2};
-  border-top: none;
-  width: 82%;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  width: 100%;
   gap: 10px;
   padding: 5px 10px;
   font-size: ${FONT.M};
@@ -63,7 +57,7 @@ export const ChatInput = styled.textarea`
   width: 100%;
   outline: none;
   border: 1px solid ${COLOR.Gray1};
-  padding: 12px 20px;
+  padding: 8px 20px;
   font-size: ${FONT.M};
   &:focus {
     border: 1px solid ${COLOR.Primary};
