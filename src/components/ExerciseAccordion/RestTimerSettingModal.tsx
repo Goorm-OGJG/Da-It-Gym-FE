@@ -54,8 +54,10 @@ export default function RestTimerSettingModal({
   };
 
   const handleInputText = (e: ChangeEvent<HTMLInputElement>) => {
-    const minutesAfterDelete = e.target.value.replace(/^0+/, "");
-    e.target.value = minutesAfterDelete;
+    if(e.target.max < e.target.value)
+      e.target.value = e.target.max;
+    if(e.target.min > e.target.value)
+      e.target.value = e.target.min;
   };
 
   return (
@@ -65,6 +67,7 @@ export default function RestTimerSettingModal({
         <S.TimeWrapper>
           <S.TimeInput
             type="number"
+            min={0}
             max={5}
             onBlur={handleInputText}
             defaultValue={restTime.minutes}
@@ -73,6 +76,7 @@ export default function RestTimerSettingModal({
           분
           <S.TimeInput
             type="number"
+            min={0}
             max={59}
             onBlur={handleInputText}
             defaultValue={restTime.seconds}
