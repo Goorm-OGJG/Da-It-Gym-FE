@@ -2,6 +2,15 @@ import styled from "styled-components";
 import * as COLOR from "../../constants/color";
 import * as FONT from "../../constants/font";
 
+export const Overlay = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 100;
+`;
+
 export const SideWrapper = styled.div`
   position: absolute;
   height: 100vh;
@@ -9,7 +18,7 @@ export const SideWrapper = styled.div`
   background-color: ${COLOR.White};
   color: ${COLOR.Primary};
   top: 60px;
-  right: -243px;
+  right: 515px;
   transition: all 1s ease-in-out;
   border-radius: 1px solid ${COLOR.Gray0};
   box-shadow: 4px 4px 12px rgba(32, 32, 32, 0.1);
@@ -46,3 +55,5 @@ export const Line = styled.div`
   width: 90%;
   border-top: 1px solid ${COLOR.Gray0};
 `;
+
+
