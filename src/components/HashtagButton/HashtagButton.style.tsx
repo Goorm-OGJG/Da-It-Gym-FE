@@ -23,6 +23,7 @@ export const StyledButton = styled.button<ButtonProps>`
   width: ${({ labelWidth }) => labelWidth + 30}px;
   height: 24px;
   border-radius: 10px;
+  white-space: nowrap;
   background-color: ${getBackgroundColor};
   color: ${getTextColor};
   outline: none;
