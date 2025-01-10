@@ -12,7 +12,7 @@ export default function EditProfile() {
 
   // 로그아웃
   const logoutHandler = async () => {
-    await requestLogout("");
+    await requestLogout();
     window.location.href = link;
   };
 
