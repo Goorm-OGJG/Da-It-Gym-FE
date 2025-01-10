@@ -55,12 +55,22 @@ export function useUserAPI() {
       .catch((error) => toast.error(error.message));
   };
   // 근근근 로그아웃
-  const requestLogout = async (FCMToken: string) => {
-    const payload = {
-      token: FCMToken,
-    };
+  // const requestLogout = async (FCMToken: string) => {
+  //   const payload = {
+  //     token: FCMToken,
+  //   };
+  //   await axios
+  //     .post(`${API_URL}/api/users/logout`, payload)
+  //     .then(() => {
+  //       localStorage.clear();
+  //     })
+  //     .catch((error) => toast.error(error));
+  // };
+
+  const requestLogout = async () => {
+    
     await axios
-      .post(`${API_URL}/api/users/logout`, payload)
+      .post(`${API_URL}/api/users/logout`)
       .then(() => {
         localStorage.clear();
       })

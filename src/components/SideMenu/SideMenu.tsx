@@ -23,10 +23,12 @@ function SideMenu() {
   };
   const { requestLogout } = useUserAPI();
   const handleLogout = async () => {
-    const FCMToken = localStorage.getItem("FCMToken");
-    if (FCMToken) {
-      await requestLogout(FCMToken);
-    }
+    // const FCMToken = localStorage.getItem("FCMToken");
+    // if (FCMToken) {
+    //   await requestLogout(FCMToken);
+    // }
+    await requestLogout();
+
     window.location.href = link;
   };
 
