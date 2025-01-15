@@ -109,7 +109,7 @@ export default function FeedRoutineDetail() {
                 <Icon.BookMark size={FONT.L} color={COLOR.Gray1} />
               )}
               {routineDetailState.scraped && (
-                <Icon.BookMark size={FONT.L} color={COLOR.Primary} />
+                <Icon.BookMarkFill size={FONT.L} color={COLOR.Primary} />
               )}
             </S.FunctionIconWrapper>
             <S.FunctionIconWrapper
