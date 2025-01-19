@@ -29,3 +29,7 @@ export const IconTrash = styled.div`
   margin-right: 15px;
   cursor: pointer;
 `;
+export const IconLock = styled.div`
+  margin-right: 15px;
+  cursor: pointer;
+`;

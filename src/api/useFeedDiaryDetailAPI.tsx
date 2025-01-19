@@ -25,7 +25,9 @@ export default function useFeedDiaryDetailAPI() {
           setFeedData(response.data.data);
         }
       })
-      .catch((error) => toast.error(error.message));
+      .catch((error) => {
+        toast.error(error.message);
+  });
   };
 
   // GET : 피드 상세보기 운동 목록 데이터 가져오기 (운동일지 : 운동 관련)
@@ -36,12 +38,15 @@ export default function useFeedDiaryDetailAPI() {
     axios
       .get(`${API_URL}/api/feeds/journal/${journalId}/journal-detail`)
       .then((response) => {
-        console.log(response.data);
+        console.log("status:" + response);
         if (dayDispatch) {
           dayDispatch({ type: "CREATE_DAY", newDay: response.data.data.journal });
         }
       })
-      .catch((error) => toast.error(error.message));
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error.error);
+      });
   };
 
   // DELETE : 피드 운동일지 삭제하기
@@ -49,7 +54,7 @@ export default function useFeedDiaryDetailAPI() {
     await axios
       .delete(`${API_URL}/api/feeds/journal/${feedJournalId}`)
       .then((response) => {
-        console.log(response.data);
+        console.log(response.status);
       })
       .catch((error) => toast.error(error.message));
   };
@@ -99,6 +104,25 @@ export default function useFeedDiaryDetailAPI() {
       })
       .catch((error) => toast.error(error.message));
   };
+
+  // POST : 피드 공개 여부
+  const requestPostChangeVisible = async (
+    feedJournalId: number,
+    dayDispatch: React.Dispatch<Action>,
+  ) => {
+    await axios
+      .post(`${API_URL}/api/feeds/journal/${feedJournalId}/visibility`)
+      .then((response) => {
+        dayDispatch({type: "UPDATE_DAY_VISIBLE", visible: response.data.data.visible});
+        if(response.data.data.visible)
+          toast.success("운동일지가 공개되었습니다.");
+        if(!response.data.data.visible)
+          toast.success("운동일지가 비공개되었습니다.");
+        
+      })
+      .catch((error) => toast.error(error.message));
+  };
+
   // DELETE : 피드 좋아요 삭제하기
   const requestDeleteFeedDiaryLike = async (
     feedJournalId: number,
@@ -206,6 +230,7 @@ export default function useFeedDiaryDetailAPI() {
     requestPostFeedDiaryScrap,
     requestDeleteFeedDiaryScrap,
     requestPostFeedDiaryLike,
+    requestPostChangeVisible,
     requestDeleteFeedDiaryLike,
     requestFeedComments,
     requestFeedCommentsReply,

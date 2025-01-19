@@ -17,11 +17,12 @@ export interface Day {
   completed: boolean;
   spread: boolean;
   exercises: Exercise[];
+  visible: boolean;
 }
 
 export type Action =
   | { type: "CREATE_DAY"; newDay: Day }
-  | {type: "UPDATE_DAY_ID"; dayId: number}
+  | { type: "UPDATE_DAY_ID"; dayId: number}
   | { type: "CREATE_EXERCISE"; exerciseName: string; exercisePart: ExercisePart }
   | { type: "UPDATE_EXERCISE_ID"; exerciseId: number}  
   | { type: "DELETE_EXERCISE" }
@@ -54,6 +55,7 @@ export type Action =
       exerciseSetId: number;
       exerciseIndex: number;
     }
+  | { type: "UPDATE_DAY_VISIBLE"; visible: boolean }
 
 export function dayRecucer(day: Day, action: Action) {
   const newDay: Day = JSON.parse(JSON.stringify(day));
@@ -162,6 +164,13 @@ export function dayRecucer(day: Day, action: Action) {
       console.log(newDay);
       return newDay;
     }
+
+    case "UPDATE_DAY_VISIBLE": {
+      const { visible } = action;
+      newDay.visible = visible;
+      return newDay;
+    }
+
     default: {
       throw new Error("Unknown action type");
     }
@@ -180,6 +189,7 @@ export const initDay: Day = {
   completed: false,
   spread: false,
   exercises: [],
+  visible: false,
 };
 
 export function useDay(): [Day, React.Dispatch<Action>] {

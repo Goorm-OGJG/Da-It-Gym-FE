@@ -39,6 +39,7 @@ export default function FeedDiaryDetail() {
     requestFeedDiaryDetail,
     requestFeedDiaryExerciseDetail,
     requestPostFeedDiaryScrap,
+    requestPostChangeVisible,
     requestDeleteFeedDiaryScrap,
     requestPostFeedDiaryLike,
     requestDeleteFeedDiaryLike,
@@ -48,9 +49,10 @@ export default function FeedDiaryDetail() {
   const useInfo = useRecoilValue(userInfoState);
   const navigate = useNavigate();
   const [feedData, setFeedData] = useState<feedDetail>();
+  const [day, dayDispatch] = useDay();
   const [likeCount, setLikeCount] = useState<number>(feedData?.likeCounts || 0);
   const [scrapCount, setScrapCount] = useState<number>(feedData?.scrapCounts || 0);
-  const [day, dayDispatch] = useDay();
+
   const handleToggleBookMark = async (journalId: number) => {
     if (feedData?.scrapped) {
       await requestDeleteFeedDiaryScrap(journalId);
@@ -67,6 +69,11 @@ export default function FeedDiaryDetail() {
       await requestPostFeedDiaryLike(journalId, setLikeCount);
     }
   };
+
+  const handleToggleVisible = async(journalId: number) => {
+    await requestPostChangeVisible(journalId, dayDispatch);
+  };
+
   const handlePostTrash = async (journalId: number) => {
     await requestDeleteFeedDiary(journalId);
     toast.success("삭제가 완료됐습니다.");
@@ -77,9 +84,11 @@ export default function FeedDiaryDetail() {
   useEffect(() => {
     requestFeedDiaryDetail(Number(journalId), setFeedData);
     requestFeedDiaryExerciseDetail(Number(journalId), dayDispatch);
+    console.log("day.visible:", day.visible);
   }, [likeCount, scrapCount]);
 
-  console.log("feedData", feedData);
+  console.log(day.visible);
+
   return (
     <S.FeedDetailWrapper>
       <S.FeedDetailHeaderWrapper>
@@ -112,13 +121,25 @@ export default function FeedDiaryDetail() {
             )}
           </S.IconHeart>
           {feedData?.writer === useInfo?.nickname && (
-            <S.IconTrash
-              onClick={() => {
-                handlePostTrash(Number(journalId) as number);
-              }}
-            >
+            <>
+              {day.visible ? (
+                <S.IconLock onClick={() => {handleToggleVisible(Number(journalId));}}>
+                  <Icon.Unlock color={COLOR.Gray2} />
+                </S.IconLock>)
+                :(
+                  <S.IconLock onClick={() => {handleToggleVisible(Number(journalId));}}>
+                  <Icon.Lock color={COLOR.Gray2} />
+                </S.IconLock>
+              )}
+
+              <S.IconTrash
+                onClick={() => {
+                  handlePostTrash(Number(journalId) as number);
+                }}
+              >
               <Icon.Trash color={COLOR.Gray2} />
-            </S.IconTrash>
+              </S.IconTrash>          
+            </>
           )}
         </S.IconBox>
       </S.FeedDetailHeaderWrapper>
