@@ -13,6 +13,7 @@ import { useRecoilValue } from "recoil";
 import { userInfoState } from "../../recoil/userInfoState";
 import { useTimeCalculate } from "../../api/useTimeCalculate";
 import Comments from "../../components/Comments/Comments";
+import DeleteButton from "../../components/DeleteButton/DeleteButton";
 
 export default function FeedRoutineDetail() {
   const navigate = useNavigate();
@@ -126,13 +127,14 @@ export default function FeedRoutineDetail() {
             </S.FunctionIconWrapper>
 
             {isMyFeed && (
-              <S.FunctionIconWrapper
-                onClick={() => {
+              <DeleteButton
+                size={FONT.L}
+                color={COLOR.Gray1}
+                conFirmMessage="정말 삭제하시겠습니까?"
+                callback={() => {
                   handleDeleteMyRoutine(Number(routineId));
                 }}
-              >
-                <Icon.Trash size={FONT.L} color={COLOR.Gray1} />
-              </S.FunctionIconWrapper>
+              />
             )}
           </S.FunctionsWrapper>
         </S.BoardHeader>

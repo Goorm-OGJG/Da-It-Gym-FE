@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
   box-shadow: 0 4px 4px ${COLOR.Shadow};
   border-radius: 10px;
   padding: 30px 20px;
-  position: relative;
 `;
 
 export const Congratulation = styled.div`
@@ -41,8 +40,6 @@ export const ButtonBox = styled.div`
 `;
 
 export const Icon = styled.div`
-  position: absolute;
-  right: 15px;
-  top: 15px;
+  float: right;
   cursor: pointer;
 `;

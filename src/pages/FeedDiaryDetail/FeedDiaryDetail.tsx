@@ -12,6 +12,7 @@ import { useNavigate, useParams } from "react-router";
 import { useRecoilValue } from "recoil";
 import { userInfoState } from "../../recoil/userInfoState";
 import { toast } from "react-toastify";
+import DeleteButton from "../../components/DeleteButton/DeleteButton";
 // const ImgList = [
 //   {
 //     id: 1,
@@ -70,7 +71,7 @@ export default function FeedDiaryDetail() {
     }
   };
 
-  const handleToggleVisible = async(journalId: number) => {
+  const handleToggleVisible = async (journalId: number) => {
     await requestPostChangeVisible(journalId, dayDispatch);
   };
 
@@ -123,22 +124,35 @@ export default function FeedDiaryDetail() {
           {feedData?.writer === useInfo?.nickname && (
             <>
               {day.visible ? (
-                <S.IconLock onClick={() => {handleToggleVisible(Number(journalId));}}>
+                <S.IconLock
+                  onClick={() => {
+                    handleToggleVisible(Number(journalId));
+                  }}
+                >
                   <Icon.Unlock color={COLOR.Gray2} />
-                </S.IconLock>)
-                :(
-                  <S.IconLock onClick={() => {handleToggleVisible(Number(journalId));}}>
+                </S.IconLock>
+              ) : (
+                <S.IconLock
+                  onClick={() => {
+                    handleToggleVisible(Number(journalId));
+                  }}
+                >
                   <Icon.Lock color={COLOR.Gray2} />
                 </S.IconLock>
               )}
 
-              <S.IconTrash
+              {/* <S.IconTrash
                 onClick={() => {
                   handlePostTrash(Number(journalId) as number);
                 }}
               >
               <Icon.Trash color={COLOR.Gray2} />
-              </S.IconTrash>          
+              </S.IconTrash>           */}
+              <DeleteButton
+                color={COLOR.Gray2}
+                conFirmMessage="정말 삭제하시겠습니까?"
+                callback={() => handlePostTrash(Number(journalId) as number)}
+              />
             </>
           )}
         </S.IconBox>

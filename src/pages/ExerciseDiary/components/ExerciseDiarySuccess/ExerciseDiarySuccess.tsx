@@ -3,12 +3,11 @@ import Button from "../../../../components/Button/Button";
 import ExerciseAccordion from "../../../../components/ExerciseAccordion/ExerciseAccordion";
 import * as S from "./ExerciseDiarySuccess.style";
 import { useSearchParams } from "react-router-dom";
-import * as Icon from "../../../../components/Icon";
 import * as COLOR from "../../../../constants/color";
-import DeleteModal from "../DeleteModal/DeleteModal";
-import { useState } from "react";
 import moment from "moment";
 import { Action, Day } from "../../../../hooks/useDay";
+import DeleteButton from "../../../../components/DeleteButton/DeleteButton";
+import useExerciseDiaryAPI from "../../../../api/useExerciseDiaryAPI";
 
 interface Props {
   day: Day;
@@ -20,7 +19,6 @@ export default function ExerciseDiarySuccess({ day, dayDispatch, journalId }: Pr
   const [searchParams] = useSearchParams();
   const date = searchParams.get("date");
   const navigate = useNavigate();
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const {
     // completed,
     dayDate,
@@ -38,24 +36,28 @@ export default function ExerciseDiarySuccess({ day, dayDispatch, journalId }: Pr
     navigate("/feed/diary/share");
   };
 
-  const deleteModalHandler = () => {
-    setIsDeleteModalOpen(true);
-  };
+  const { requestDeleteJournal } = useExerciseDiaryAPI();
 
   const [yy, mm, dd] = String(dayDate)?.split("-") as string[];
 
   return (
     <>
       <S.Wrapper>
+        <S.Icon>
+          <DeleteButton
+            color={COLOR.Gray2}
+            callback={() => requestDeleteJournal(journalId)}
+            conFirmMessage="정말 삭제하시겠습니까?"
+          />
+        </S.Icon>
+
         {date === moment(new Date()).format("YYYY-MM-DD") && (
           <>
             <S.Congratulation>축하합니다!</S.Congratulation>
             <S.Congratulation>오늘의 운동을 완료하셨습니다!</S.Congratulation>
           </>
         )}
-        <S.Icon onClick={deleteModalHandler}>
-          <Icon.Trash color={`${COLOR.Gray2}`} />
-        </S.Icon>
+
         <S.Congratulation>{`${yy}년 ${mm}월 ${dd}일`}</S.Congratulation>
         <S.Congratulation>운동일지</S.Congratulation>
 
@@ -85,9 +87,6 @@ export default function ExerciseDiarySuccess({ day, dayDispatch, journalId }: Pr
           )}
         </S.ButtonBox>
       </S.Wrapper>
-      {isDeleteModalOpen && (
-        <DeleteModal setIsDeleteModalOpen={setIsDeleteModalOpen} journalId={journalId} />
-      )}
     </>
   );
 }

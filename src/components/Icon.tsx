@@ -15,7 +15,8 @@ import * as Ci from "react-icons/ci";
 import * as COLOR from "../constants/color";
 const F_DEFAULT = "16";
 const C_DEFAULT = `${COLOR.Primary}`;
-interface Props {
+
+export interface Props {
   size?: string;
   color?: string;
 }
