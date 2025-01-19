@@ -4,7 +4,8 @@ import * as FONT from "../../constants/font";
 
 export const CommentTotalCount = styled.div`
   flex: 1;
-  font-size: ${FONT.L};
+  font-size: ${FONT.S};
+  font-weight: ${FONT.Bold};
   padding: 5px 15px;
 `;
 export const CommentsWrapper = styled.div`
