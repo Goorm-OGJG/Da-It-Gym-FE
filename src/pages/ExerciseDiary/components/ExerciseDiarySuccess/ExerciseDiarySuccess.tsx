@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import Button from "../../../../components/Button/Button";
 import ExerciseAccordion from "../../../../components/ExerciseAccordion/ExerciseAccordion";
 import * as S from "./ExerciseDiarySuccess.style";
+import * as Icon from "../../../../components/Icon";
 import { useSearchParams } from "react-router-dom";
 import * as COLOR from "../../../../constants/color";
 import moment from "moment";
@@ -61,7 +62,12 @@ export default function ExerciseDiarySuccess({ day, dayDispatch, journalId }: Pr
         <S.Congratulation>{`${yy}년 ${mm}월 ${dd}일`}</S.Congratulation>
         <S.Congratulation>운동일지</S.Congratulation>
 
-        <S.TimeRecord>{`오운완 ${hours}:${minutes}:${seconds}`}</S.TimeRecord>
+        <S.TimeRecord>
+          <Icon.Clock color={COLOR.Black} />
+          {`${String(hours).padStart(1, "0")}:`}
+          {`${String(minutes).padStart(2, "0")}:`}
+          {`${String(seconds).padStart(2, "0")}`}
+        </S.TimeRecord>
         <S.Exercises>
           <ExerciseAccordion
             exercises={exercises}

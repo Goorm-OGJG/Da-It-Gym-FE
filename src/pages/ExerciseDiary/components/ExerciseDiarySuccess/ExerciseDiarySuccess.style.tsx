@@ -20,6 +20,8 @@ export const Congratulation = styled.div`
 `;
 
 export const TimeRecord = styled.div`
+  display: flex;
+  gap: 5px;
   font-size: ${FONT.S};
   font-weight: ${FONT.Bold};
   padding: 20px 5px;

@@ -48,7 +48,10 @@ function FDDAccordion({ day, dayDispatch, scrapCount, likeCount, journalId }: Pr
           </S.UpIcon>
           {isSpread ? <> 모두 접기 </> : <> 모두 열기 </>}
           <S.TotalExerciseTime>
-            {day.exerciseTime.hours}:{day.exerciseTime.minutes}:{day.exerciseTime.seconds}
+            {`${String(day.exerciseTime.hours).padStart(1, "0")}:`}
+            {`${String(day.exerciseTime.minutes).padStart(2, "0")}:`}
+            {`${String(day.exerciseTime.seconds).padStart(2, "0")}`}
+            {/* {day.exerciseTime.hours}:{day.exerciseTime.minutes}:{day.exerciseTime.seconds} */}
           </S.TotalExerciseTime>
         </S.IconBox>
         <S.Line />

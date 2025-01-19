@@ -118,6 +118,10 @@ export const Start = ({ size, color }: Props) => (
   <Fa6.FaPlay size={size ? size : F_DEFAULT} color={color ? color : C_DEFAULT} />
 );
 
+export const Clock = ({ size, color }: Props) => (
+  <Fa.FaRegClock size={size ? size : F_DEFAULT} color={color ? color : C_DEFAULT} />
+);
+
 // 별표
 export const Star = ({ size, color }: Props) => (
   <Ai.AiOutlineStar size={size ? size : F_DEFAULT} color={color ? color : C_DEFAULT} />
