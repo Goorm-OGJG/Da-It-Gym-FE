@@ -14,7 +14,7 @@ export function useAxios() {
       const accessToken = localStorage.getItem("accessToken");
       // console.log("로컬스토리지 accessToken", accessToken);
       if (accessToken) {
-        config.headers.authorization = `${accessToken}`;
+        config.headers.authorization = `Bearer ${accessToken}`;
         //🧐 accessToken 존재하면 요청 헤더에  authorization에 accesssToken 으로 설정한다.
       }
 
