@@ -173,7 +173,7 @@ export default function useRoutineAPI() {
     axios
       .delete(`${API_URL}/api/routines/${routineId}`)
       .then(() => {
-        toast.done("루틴이 삭제되었습니다.");
+        toast.success("루틴이 삭제되었습니다.");
         navigate(`/feed/routine`);
       })
       .catch(() => {
@@ -217,14 +217,14 @@ export default function useRoutineAPI() {
     return response;
   };
 
- const useExerciseOfPartQuery = ( exercisePart: ExercisePart) => {
-  return useQuery({
-    queryKey: ["ExerciseOfPart", exercisePart], 
-    queryFn: () => requestExerciseOfPart(exercisePart),
-    staleTime: Infinity,
-    gcTime:Infinity
-  });
- };
+  const useExerciseOfPartQuery = (exercisePart: ExercisePart) => {
+    return useQuery({
+      queryKey: ["ExerciseOfPart", exercisePart],
+      queryFn: () => requestExerciseOfPart(exercisePart),
+      staleTime: Infinity,
+      gcTime: Infinity,
+    });
+  };
 
   return {
     requestLike,
