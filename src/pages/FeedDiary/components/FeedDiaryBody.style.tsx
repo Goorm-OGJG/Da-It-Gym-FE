@@ -42,14 +42,11 @@ export const BodyBox = styled.div`
   width: 100%;
 `;
 export const FeedElementBox = styled.div`
-  width: 200px;
   max-height: 200px;
-  min-height: 200px;
   padding: 2px;
   background-color: ${COLOR.Gray1};
   @media (max-width: 600px) {
-    width: 33vw;
-    height: 33vw;
+    aspect-ratio: 1;
   }
   cursor: pointer;
 `;
