@@ -67,7 +67,7 @@ function useChatAPI(chatConfig: ChatConfig) {
     const { redisRoomId } = chatConfig;
     client.current!.onConnect = () => {
       client.current!.subscribe(`/sub/chat/room/${redisRoomId}`, subCallback, {
-        Authentication: localStorage.getItem("accessToken") as string,
+        Authentication: `Bearer ${localStorage.getItem("accessToken") as string}`,
         RedisRoomId: redisRoomId,
       });
       publishEnterUser();
@@ -114,7 +114,7 @@ function useChatAPI(chatConfig: ChatConfig) {
           sender: user.nickname,
         }),
         headers: {
-          Authentication: localStorage.getItem("accessToken") as string,
+          Authentication: `Bearer ${localStorage.getItem("accessToken") as string}`,
         },
       });
   };
@@ -149,7 +149,7 @@ function useChatAPI(chatConfig: ChatConfig) {
           message: message,
         }),
         headers: {
-          Authentication: localStorage.getItem("accessToken") as string,
+          Authentication: `Bearer ${localStorage.getItem("accessToken") as string}`,
         },
       });
     }
