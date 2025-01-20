@@ -22,9 +22,9 @@ export interface Day {
 
 export type Action =
   | { type: "CREATE_DAY"; newDay: Day }
-  | { type: "UPDATE_DAY_ID"; dayId: number}
+  | { type: "UPDATE_DAY_ID"; dayId: number }
   | { type: "CREATE_EXERCISE"; exerciseName: string; exercisePart: ExercisePart }
-  | { type: "UPDATE_EXERCISE_ID"; exerciseId: number}  
+  | { type: "UPDATE_EXERCISE_ID"; exerciseId: number }
   | { type: "DELETE_EXERCISE" }
   | { type: "UPDATE_EXERCISES_IS_SPREAD" }
   | { type: "UPDATE_EXERCISE_NAME"; exerciseIndex: number; newName: string }
@@ -55,7 +55,7 @@ export type Action =
       exerciseSetId: number;
       exerciseIndex: number;
     }
-  | { type: "UPDATE_DAY_VISIBLE"; visible: boolean }
+  | { type: "UPDATE_DAY_VISIBLE"; visible: boolean };
 
 export function dayRecucer(day: Day, action: Action) {
   const newDay: Day = JSON.parse(JSON.stringify(day));
@@ -155,6 +155,7 @@ export function dayRecucer(day: Day, action: Action) {
         !newDay.exercises[exerciseIndex].exerciseSets[exerciseSetIndex].completed;
       return newDay;
     }
+
     case "UPDATE_EXERSISE_SET": {
       const { exerciseIndex, exerciseSetId } = action;
       const newExerciseSet = { ...initExerciseSet, id: exerciseSetId };

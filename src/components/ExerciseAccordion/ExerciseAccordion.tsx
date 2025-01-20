@@ -10,6 +10,9 @@ import { Day, Action as DayAction } from "../../hooks/useDay";
 import AddExerciseModal from "./AddExerciseModal";
 import useExerciseDiaryAPI, { AddHistory } from "../../api/useExerciseDiaryAPI";
 import { useLocation } from "react-router";
+import { isExistState, markState } from "../../recoil/exerciseState";
+import { useSetRecoilState } from "recoil";
+import { useSearchParams } from "react-router-dom";
 // import { useSearchParams } from "react-router-dom";
 
 export interface Props {
@@ -34,10 +37,18 @@ export default function ExerciseAccordion({
   // const [searchParams] = useSearchParams();
   // const date = searchParams.get("date");
   const location = useLocation();
+  const setMark = useSetRecoilState(markState);
+  const [searchParams] = useSearchParams();
+  const date = searchParams.get("date");
+  const setIsExist = useSetRecoilState(isExistState);
   const [isOpenedRestTimerModal, setIsOpenedRestTimerModal] = useState(-1);
   const [isOpendAddExerciseModal, setIsOpenedAddExerciseModal] = useState(false);
-  const { requestAddHistory, requestDeleteHistory, requestDeleteExercise } =
-    useExerciseDiaryAPI();
+  const {
+    requestAddHistory,
+    requestDeleteHistory,
+    requestDeleteExercise,
+    requestDeleteJournal,
+  } = useExerciseDiaryAPI();
 
   const handleIsOpendRestTimeModal = (exerciseIndex: number) => {
     setIsOpenedRestTimerModal(exerciseIndex);
@@ -96,6 +107,10 @@ export default function ExerciseAccordion({
     if (day && day.exercises.length > 0) {
       const length = day.exercises.length;
       requestDeleteExercise(day.exercises[length - 1].id as number);
+    }
+    if (day && day.exercises.length === 0) {
+      requestDeleteJournal(date as string, Number(day.id), setMark);
+      setIsExist(false);
     }
   };
   return (
@@ -184,7 +199,7 @@ export default function ExerciseAccordion({
             size="medium"
             onClick={() => handleDeleteExercise(dayIndex)}
           >
-            운동 삭제
+            {day?.exercises.length === 0 ? "일지 삭제" : "운동 삭제"}
           </Button>
 
           <Button

@@ -6,10 +6,10 @@ import useExerciseDiary from "../../api/useExerciseDiaryAPI";
 import { useLocation, useNavigate } from "react-router";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { isExistState, markState } from "../../recoil/exerciseState";
-import { useQuery } from "@tanstack/react-query";
-import { useAxios } from "../../api/useAxios";
+// import { useQuery } from "@tanstack/react-query";
+// import { useAxios } from "../../api/useAxios";
 export type ValuePiece = Date | null;
-export type Value = ValuePiece | [ValuePiece, ValuePiece] | null; 
+export type Value = ValuePiece | [ValuePiece, ValuePiece] | null;
 
 interface Props {
   value: Value;
@@ -26,17 +26,17 @@ export default function ExerciseCalendar({ value, onChange }: Props) {
   const currDateTime = moment(currDate).format("MM-DD");
   const { requestJournals } = useExerciseDiary();
   const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_API_URL;
-  const axios = useAxios();
+  // const API_URL = import.meta.env.VITE_API_URL;
+  // const axios = useAxios();
 
-  const { data } = useQuery({
-    queryKey: ["get-journals"],
-    queryFn: () => {
-      return axios.get(`${API_URL}/api/journals`);
-    },
-  });
+  // const { data } = useQuery({
+  //   queryKey: ["get-journals"],
+  //   queryFn: () => {
+  //     return axios.get(`${API_URL}/api/journals`);
+  //   },
+  // });
 
-  console.log("data", data);
+  // console.log("data", data);
   const [mark, setMark] = useRecoilState(markState);
   // const mark = journals.map((journal) => journal.journalDate);
   const setIsExist = useSetRecoilState(isExistState);
@@ -47,7 +47,7 @@ export default function ExerciseCalendar({ value, onChange }: Props) {
     // const mark = data?.data.data.journals;
     if (location.pathname === "/diary") {
       navigate(`/diary?date=${date}`);
-      console.log("mark",mark);
+      console.log("mark", mark);
       if (mark.includes(date)) {
         setIsExist(true);
       } else {

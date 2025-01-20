@@ -74,7 +74,7 @@ export default function ExerciseDiaryDefault({ day, dayDispatch }: Props) {
               </S.ExerciseBox>
             )}
           </>
-        )} 
+        )}
       </>
     </S.Wrapper>
   );

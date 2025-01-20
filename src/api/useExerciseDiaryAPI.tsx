@@ -6,12 +6,10 @@ import { Action } from "../hooks/useDay";
 import { ExerciseSet } from "../hooks/useExerciseSet";
 import { SetterOrUpdater } from "recoil";
 import { Replication } from "../pages/FeedImport/FeedImport";
-// import { useNavigate } from "react-router";
 
 export default function useExerciseDiaryAPI() {
   const API_URL = import.meta.env.VITE_API_URL;
   const axios = useAxios();
-  // const navigate = useNavigate();
   // 휴식시간 변경
   const requestPatchRestTime = (exerciseListId: number) => {
     axios
@@ -46,6 +44,10 @@ export default function useExerciseDiaryAPI() {
         if (dayDispatch) {
           dayDispatch({ type: "CREATE_DAY", newDay: res.data.data.journal });
         }
+        if (setIsExist) {
+          setIsExist(() => true);
+        }
+
         // 공유할때 jornalId값 저장해야함
         if (res && setJournalId) {
           setJournalId(res.data.data.journal.id);
@@ -91,11 +93,17 @@ export default function useExerciseDiaryAPI() {
   };
 
   // 운동일지 삭제
-  const requestDeleteJournal = (journalId: number) => {
+  const requestDeleteJournal = (
+    journalDate: string,
+    journalId: number,
+    setMark?: SetterOrUpdater<string[]>,
+  ) => {
     axios
       .delete(`${API_URL}/api/journals/${journalId}`)
       .then(() => {
-        window.location.reload();
+        setMark && setMark((prev) => prev.filter((date) => date !== journalDate));
+        toast.success("운동일지를 삭제했습니다.");
+        // navigate("/diary");
       })
       .catch((err) => toast.error(err.message));
   };
@@ -119,10 +127,10 @@ export default function useExerciseDiaryAPI() {
       .post(`${API_URL}/api/journals`, { journalDate })
       .then((res) => {
         const dayId = res.data.data.id;
-        console.log(dayId);
         setIsExist(true);
         setMark((prev) => [...prev, journalDate]);
         dayDispatch({ type: "UPDATE_DAY_ID", dayId });
+        toast.success("운동일지를 생성했습니다.");
       })
       .catch((err) => toast.error(err.message));
   };
@@ -156,12 +164,15 @@ export default function useExerciseDiaryAPI() {
   };
 
   // 일지에 운동 추가하기
-  const requestAddExercise = (payload: AddExercise, dayDispatch: React.Dispatch<Action>) => {
+  const requestAddExercise = (
+    payload: AddExercise,
+    dayDispatch: React.Dispatch<Action>,
+  ) => {
     axios
       .post(`${API_URL}/api/journals/exercise-list`, payload)
       .then((res) => {
         console.log("운동아이디 저장하기:", res.data.data.id);
-        dayDispatch({type:"UPDATE_EXERCISE_ID", exerciseId: res.data.data.id });
+        dayDispatch({ type: "UPDATE_EXERCISE_ID", exerciseId: res.data.data.id });
       })
       .catch((err) => toast.error(err.message));
   };

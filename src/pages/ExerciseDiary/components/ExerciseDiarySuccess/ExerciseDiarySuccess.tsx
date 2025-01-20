@@ -47,7 +47,7 @@ export default function ExerciseDiarySuccess({ day, dayDispatch, journalId }: Pr
         <S.Icon>
           <DeleteButton
             color={COLOR.Gray2}
-            callback={() => requestDeleteJournal(journalId)}
+            callback={() => requestDeleteJournal(date as string, journalId)}
             conFirmMessage="정말 삭제하시겠습니까?"
           />
         </S.Icon>

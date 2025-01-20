@@ -2,35 +2,44 @@ import { useSearchParams } from "react-router-dom";
 import ExerciseDiaryDefault from "./components/ExerciseDiaryDefault/ExerciseDiaryDefault";
 import ExerciseNav from "./components/ExerciseNav/ExerciseNav";
 import ExerciseDiarySuccess from "./components/ExerciseDiarySuccess/ExerciseDiarySuccess";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import useExerciseDiaryAPI from "../../api/useExerciseDiaryAPI";
 import { useDay } from "../../hooks/useDay";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { isExistState, markState } from "../../recoil/exerciseState";
 
 export default function ExerciseDiary() {
   const [searchParams] = useSearchParams();
   const date = searchParams.get("date");
   const [isExist, setIsExist] = useRecoilState(isExistState);
-  const { requestJournalDetail } = useExerciseDiaryAPI();
+  const { requestJournalDetail, requestDeleteJournal } = useExerciseDiaryAPI();
   const [day, dayDispatch] = useDay();
-  const mark = useRecoilValue(markState);
+  const [mark, setMark] = useRecoilState(markState);
   const isMarked = useMemo(() => mark.includes(date as string), [date, mark]);
+  const dayRef = useRef(day);
+  const isExistRef = useRef(isExist);
 
   useEffect(() => {
-    if (isMarked) {
-        requestJournalDetail(
-          date as string,
-          dayDispatch,
-          undefined,
-          undefined,
-          setIsExist,
-        );
-    }
-  }, [date, isExist, setIsExist, mark, dayDispatch]); // requestJournalDetail 추가 시 무한 재랜더링
+    isExistRef.current = isExist; // 최신 day 값 업데이트
+  }, [isExist]);
+
+  useEffect(() => {
+    dayRef.current = day; // 최신 day 값 업데이트
+  }, [day]);
+
+  useEffect(() => {
+    if (isMarked)
+      requestJournalDetail(date as string, dayDispatch, undefined, undefined, setIsExist);
+
+    return () => {
+      if (date && isExistRef.current && dayRef.current.exercises.length === 0)
+        requestDeleteJournal(date as string, Number(dayRef.current.id), setMark);
+    };
+  }, [date]); // requestJournalDetail 추가 시 무한 재랜더링
+
   return (
     <>
-       {isMarked && date && day.completed ? (
+      {isMarked && date && day.completed ? (
         <>
           <ExerciseDiarySuccess
             day={day}
