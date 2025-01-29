@@ -6,7 +6,7 @@ export const ExerciseWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
-  padding-left: 25px;
+  padding-left: 15px;
   font-weight: ${FONT.Regular};
   font-size: ${FONT.S};
   align-items: center;
@@ -16,20 +16,18 @@ export const ExerciseHeaderWrapper = styled(ExerciseWrapper)`
   padding-top: 20px;
 `;
 export const Title = styled.span`
-  padding-bottom: 10px;
   flex: 1;
-  text-align: center;
   width: 60px;
 `;
 
 export const ExerciseLeft = styled.div`
   display: flex;
-  gap: 30px;
+  justify-content: center;
   flex-basis: 210px;
 `;
 
 export const ExerciseRight = styled.label`
-  width: 32px;
+  width: 60px;
   text-align: center;
 `;
 
@@ -66,7 +64,7 @@ export const Checkbox = styled.div`
   flex: 1;
   text-align: center;
   width: 100%;
-  height: 20px;
+  height: 25px;
   border-radius: 5px;
   background-color: ${COLOR.Gray2};
   cursor: pointer;

@@ -73,6 +73,7 @@ export default function ExerciseSetComponent({
     exerciseIndex: number,
     exerciseSetIndex: number,
   ) => {
+    // let newCounts = e.target.value;
     let newCounts = e.target.value;
     dispatch!({
       type: "UPDATE_EXERSISE_SET_COUNTS",
