@@ -43,7 +43,7 @@ export default function useProfileAPI() {
   const API_URL = import.meta.env.VITE_API_URL;
   const axios = useAxios();
   const navigate = useNavigate();
-  
+
   const requestProfile = (
     nickname: string,
     setProfileData: React.Dispatch<React.SetStateAction<ProfileData>>,
@@ -57,10 +57,11 @@ export default function useProfileAPI() {
       .catch((err) => toast.error(err.message));
   };
 
-  const useRequestProfile = (nickname: string) => useQuery({
-    queryKey: ["profile", nickname],
-    queryFn: () => axios.get(`/api/users/${nickname}`)
-  });
+  const useRequestProfile = (nickname: string) =>
+    useQuery({
+      queryKey: ["profile", nickname],
+      queryFn: () => axios.get(`/api/users/${nickname}`),
+    });
 
   // 프로필 편집
   const requestEditProfile = (
@@ -169,8 +170,7 @@ export default function useProfileAPI() {
 
   const useRequestFollow = (userProfileRefetch: () => void) => {
     return useMutation({
-      mutationFn: (nickname: string) =>
-        axios.post(`${API_URL}/api/follows/${nickname}`), // 팔로우 요청 API 호출
+      mutationFn: (nickname: string) => axios.post(`${API_URL}/api/follows/${nickname}`), // 팔로우 요청 API 호출
       onSuccess: () => {
         userProfileRefetch(); // 요청 성공 시 유저 프로필 쿼리 갱신
       },
@@ -178,7 +178,7 @@ export default function useProfileAPI() {
         toast.error(err.message); // 에러 발생 시 에러 메시지 출력
       },
     });
-};
+  };
 
   // const requestDeleteFollow = async (nickname: string) => {
   //   await axios
@@ -187,11 +187,12 @@ export default function useProfileAPI() {
   //     .catch((err) => toast.error(err.error));
   // };
 
-  const useRequestDeleteFollow = (userProfileRefetch: ()=> void) => {
+  const useRequestDeleteFollow = (userProfileRefetch: () => void) => {
     return useMutation({
-      mutationFn: (nickname: string) =>  axios.delete(`${API_URL}/api/follows/${nickname}`),
+      mutationFn: (nickname: string) =>
+        axios.delete(`${API_URL}/api/follows/${nickname}`),
       onSuccess: () => userProfileRefetch(),
-      onError: (err) => toast.error(err.message)
+      onError: (err) => toast.error(err.message),
     });
   };
 
@@ -206,7 +207,7 @@ export default function useProfileAPI() {
       .then((res) => {
         const totalPage = res.data.data.totalPage;
         if (page <= totalPage) {
-          setFeedDiaryData(res.data.data.feedExerciseJournalLists);
+          setFeedDiaryData((prev) => [...prev, res.data.data.feedExerciseJournalLists]);
         }
       })
       .catch((err) => toast.error(err.message));
@@ -223,7 +224,7 @@ export default function useProfileAPI() {
       .then((res) => {
         const totalPage = res.data.data.totalPage;
         if (page <= totalPage) {
-          setFeedDiaryData(res.data.data.feedExerciseJournalLists);
+          setFeedDiaryData((prev) => [...prev, res.data.data.feedExerciseJournalLists]);
         }
       })
       .catch((err) => toast.error(err.message));
