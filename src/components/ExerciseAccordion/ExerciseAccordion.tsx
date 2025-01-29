@@ -8,11 +8,12 @@ import { Exercise } from "../../hooks/useExercise";
 import { Action as RoutineAction } from "../../hooks/useRoutine";
 import { Day, Action as DayAction } from "../../hooks/useDay";
 import AddExerciseModal from "./AddExerciseModal";
-import useExerciseDiaryAPI, { AddHistory } from "../../api/useExerciseDiaryAPI";
+import useExerciseDiaryAPI from "../../api/useExerciseDiaryAPI";
 import { useLocation } from "react-router";
 import { isExistState, markState } from "../../recoil/exerciseState";
 import { useSetRecoilState } from "recoil";
 import { useSearchParams } from "react-router-dom";
+import { ExerciseSet as ExerciseSetType } from "../../hooks/useExerciseSet";
 // import { useSearchParams } from "react-router-dom";
 
 export interface Props {
@@ -34,8 +35,6 @@ export default function ExerciseAccordion({
   type,
   day,
 }: Props) {
-  // const [searchParams] = useSearchParams();
-  // const date = searchParams.get("date");
   const location = useLocation();
   const setMark = useSetRecoilState(markState);
   const [searchParams] = useSearchParams();
@@ -68,7 +67,7 @@ export default function ExerciseAccordion({
     exerciseListId?: number,
   ): void => {
     if (exercises[exerciseIndex].exerciseSets.length > 0) {
-      dispatch({ type: "DELETE_EXERSISE_SET", dayIndex, exerciseIndex });
+      dispatch({ type: "DELETE_EXERCISE_SET", dayIndex, exerciseIndex });
 
       if (exerciseListId) {
         const exercise = day!.exercises.filter(
@@ -90,15 +89,39 @@ export default function ExerciseAccordion({
       const exercise = day!.exercises.filter(
         (exercise) => exercise.id === exerciseListId,
       );
-      const payload: AddHistory = {
+      const newExerciseSet: ExerciseSetType = {
         id: exerciseListId as number,
-        setNum: (exercise[0].exerciseSets.length + 1) as number,
-        weights: 10,
-        counts: 10,
+        order: (exercise[0].exerciseSets.length + 1) as number,
+        weights:
+          exercise[0].exerciseSets.length === 0
+            ? 10
+            : (exercise[0].exerciseSets.at(-1)?.weights as number),
+        counts:
+          exercise[0].exerciseSets.length === 0
+            ? 10
+            : (exercise[0].exerciseSets.at(-1)?.counts as number),
+        completed: false,
       };
-      requestAddHistory(payload, exerciseIndex, dispatch as React.Dispatch<DayAction>);
+      requestAddHistory(
+        newExerciseSet,
+        exerciseIndex,
+        dispatch as React.Dispatch<DayAction>,
+      );
     } else {
-      dispatch({ type: "CREATE_EXERSISE_SET", dayIndex, exerciseIndex });
+      const newExerciseSet: ExerciseSetType = {
+        id: exerciseListId as number,
+        order: (exercises[exerciseIndex].exerciseSets.length + 1) as number,
+        weights:
+          exercises[exerciseIndex].exerciseSets.length === 0
+            ? 10
+            : (exercises[exerciseIndex].exerciseSets.at(-1)?.weights as number),
+        counts:
+          exercises[exerciseIndex].exerciseSets.length === 0
+            ? 10
+            : (exercises[exerciseIndex].exerciseSets.at(-1)?.counts as number),
+        completed: false,
+      };
+      dispatch({ type: "CREATE_EXERCISE_SET", dayIndex, exerciseIndex, newExerciseSet });
     }
   };
 

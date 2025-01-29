@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { Day, initDay } from "./useDay";
 import { RestTime, getNewExercise } from "./useExercise";
-import { initExerciseSet } from "./useExerciseSet";
+import { ExerciseSet } from "./useExerciseSet";
 import { ExercisePart } from "../constants/excercise";
 
 export interface Routine {
@@ -39,8 +39,13 @@ export type Action =
       exerciseIndex: number;
       newRestTime: RestTime;
     }
-  | { type: "CREATE_EXERSISE_SET"; dayIndex: number; exerciseIndex: number }
-  | { type: "DELETE_EXERSISE_SET"; dayIndex: number; exerciseIndex: number }
+  | {
+      type: "CREATE_EXERCISE_SET";
+      dayIndex: number;
+      exerciseIndex: number;
+      newExerciseSet: ExerciseSet;
+    }
+  | { type: "DELETE_EXERCISE_SET"; dayIndex: number; exerciseIndex: number }
   | { type: "UPDATE_EXERCISES_SETS_IS_SPREAD"; dayIndex: number; exerciseIndex: number }
   | {
       type: "UPDATE_EXERSISE_SET_WEIGHTS";
@@ -124,9 +129,9 @@ export function routineReducer(routine: Routine, action: Action) {
       return newRoutine;
     }
 
-    case "CREATE_EXERSISE_SET": {
-      const { dayIndex, exerciseIndex } = action;
-      const newExerciseSet = { ...initExerciseSet };
+    case "CREATE_EXERCISE_SET": {
+      const { dayIndex, exerciseIndex, newExerciseSet } = action;
+      // const newExerciseSet = { ...initExerciseSet };
       newExerciseSet.order =
         newRoutine.days[dayIndex].exercises[exerciseIndex].exerciseSets.length + 1;
       newRoutine.days[dayIndex].exercises[exerciseIndex].exerciseSets.push(
@@ -135,7 +140,7 @@ export function routineReducer(routine: Routine, action: Action) {
       return newRoutine;
     }
 
-    case "DELETE_EXERSISE_SET": {
+    case "DELETE_EXERCISE_SET": {
       const { dayIndex, exerciseIndex } = action;
       newRoutine.days[dayIndex].exercises[exerciseIndex].exerciseSets.pop();
       return newRoutine;

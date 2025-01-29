@@ -179,7 +179,7 @@ export default function useExerciseDiaryAPI() {
 
   // 운동에 운동기록 추가하기
   const requestAddHistory = (
-    payload: AddHistory,
+    payload: ExerciseSet,
     exerciseIndex: number,
     dispatch: React.Dispatch<Action>,
   ) => {
@@ -187,8 +187,9 @@ export default function useExerciseDiaryAPI() {
       .post(`${API_URL}/api/journals/exercise-history`, payload)
       .then((res) => {
         console.log("test:", res.data.data.id);
-        const exerciseSetId = res.data.data.id;
-        dispatch({ type: "UPDATE_EXERSISE_SET", exerciseIndex, exerciseSetId });
+        // const exerciseSetId = res.data.data.id;
+        payload.id = res.data.data.id;
+        dispatch({ type: "CREATE_EXERCISE_SET", exerciseIndex, newExerciseSet: payload });
       })
       .catch((err) => toast.error(err.message));
   };

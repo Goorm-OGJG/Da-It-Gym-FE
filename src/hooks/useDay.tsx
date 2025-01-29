@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { Exercise, RestTime, getNewExercise } from "./useExercise";
-import { initExerciseSet } from "./useExerciseSet";
+import { ExerciseSet, initExerciseSet } from "./useExerciseSet";
 import { ExercisePart } from "../constants/excercise";
 
 export interface ExerciseTime {
@@ -30,8 +30,8 @@ export type Action =
   | { type: "UPDATE_EXERCISE_NAME"; exerciseIndex: number; newName: string }
   | { type: "UPDATE_EXERCISE_PART"; exerciseIndex: number; newPart: string }
   | { type: "UPDATE_EXERCISE_REST_TIME"; exerciseIndex: number; newRestTime: RestTime }
-  | { type: "CREATE_EXERSISE_SET"; exerciseIndex: number }
-  | { type: "DELETE_EXERSISE_SET"; exerciseIndex: number }
+  | { type: "CREATE_EXERCISE_SET"; exerciseIndex: number; newExerciseSet: ExerciseSet }
+  | { type: "DELETE_EXERCISE_SET"; exerciseIndex: number }
   | { type: "UPDATE_EXERCISES_SETS_IS_SPREAD"; exerciseIndex: number }
   | {
       type: "UPDATE_EXERSISE_SET_WEIGHTS";
@@ -118,15 +118,14 @@ export function dayRecucer(day: Day, action: Action) {
       return newDay;
     }
 
-    case "CREATE_EXERSISE_SET": {
-      const { exerciseIndex } = action;
-      const newExersizeSet = { ...initExerciseSet };
-      newExersizeSet.order = newDay.exercises[exerciseIndex].exerciseSets.length + 1;
-      newDay.exercises[exerciseIndex].exerciseSets.push(newExersizeSet);
+    case "CREATE_EXERCISE_SET": {
+      const { exerciseIndex, newExerciseSet } = action;
+      newExerciseSet.order = newDay.exercises[exerciseIndex].exerciseSets.length + 1;
+      newDay.exercises[exerciseIndex].exerciseSets.push(newExerciseSet);
       return newDay;
     }
 
-    case "DELETE_EXERSISE_SET": {
+    case "DELETE_EXERCISE_SET": {
       const { exerciseIndex } = action;
       newDay.exercises[exerciseIndex].exerciseSets.pop();
       return newDay;

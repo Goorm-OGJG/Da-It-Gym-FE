@@ -39,7 +39,7 @@ export const initExerciseSet: ExerciseSet = {
   id: null,
   order: 1,
   weights: 10,
-  counts: 1,
+  counts: 10,
   completed: false,
 };
 
